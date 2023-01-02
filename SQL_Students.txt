@@ -1,0 +1,6 @@
+1) SQL-запрос дл€ добавлени€ пол€ УidФ в таблицу Уeduc_partФ: ALTER TABLE educ_part ADD COLUMN id INT;
+2) SQL-запрос дл€ изменени€ среднего балла студента: UPDATE educ_part SET student_gpa='11' WHERE id=2;
+3) SQL-запрос дл€ вывода студентов (У»м€Ф, У‘амили€Ф, Ђƒата рождени€ї (студента),  У—редний баллФ, УѕосещаемостьФ), у которых средний балл превышает 4.5 баллов в пор€дке убывани€: 
+SELECT student_name, student_surname, DATE_FORMAT(student_birthday,'%D %M %Y'), student_attendance, student_gpa FROM students JOIN educ_part ON  student_gpa > 4.5 AND students.id = educ_part.id ORDER BY student_gpa DESC;
+4) SQL-запрос дл€ вывода следующего результирующего набора данных: У»м€Ф, У‘амили€Ф (студента),  УЌазвание предметаФ , У оличество часовФ:
+SELECT student_name, student_surname, subjects.subject_name, hour_number FROM students JOIN subjects JOIN students_subjects JOIN educ_part ON educ_part.student_id = students_subjects.student_id AND subjects.subject_name = students_subjects.subject_name AND educ_part.id = students.id
